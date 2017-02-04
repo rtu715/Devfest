@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -14,7 +16,7 @@ import javax.swing.JPanel;
  author: armerala
  */
 
-public class RootWindow{
+public class RootWindow implements ActionListener{
 	
 	private JFrame frame;
 	private int width;
@@ -35,7 +37,7 @@ public class RootWindow{
 		frame.setResizable(false);
 		width = frame.getContentPane().getWidth();
 		height = frame.getContentPane().getHeight();
-		
+
 		//create each panel that we need
 		constraints.gridx = 1;
 		constraints.gridy = 1;
@@ -43,10 +45,25 @@ public class RootWindow{
 		ip.setLocation(100, 100);
 		ip.setPreferredSize(new Dimension(200,200));
 		frame.add(ip, constraints);
-		
+		   System.out.println("hi");
+
+		//initialize the settings button in the bottom
+		constraints.gridx = 9;
+		constraints.gridy = 9;
+		SettingsButton settingsButton = new SettingsButton((ActionListener)this);
+		settingsButton.setLocation(400, 400);
+		frame.add(settingsButton, constraints);
+
 		//finalize frame and show
 		frame.toBack();
 		frame.pack();
 		frame.setVisible(true);
+
+	}
+	
+	public void actionPerformed (ActionEvent e){
+		//listen for the settings button
+		//debug for now
+		System.out.println("hi");
 	}
 }

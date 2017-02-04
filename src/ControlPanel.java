@@ -22,7 +22,7 @@ public class ControlPanel extends JPanel implements ActionListener {
     @Override
 	public void actionPerformed(ActionEvent e) {
         JComboBox cb = (JComboBox) e.getSource();
-        String control = (String) cb.getSelectedItem();
-        parentPanel.update(control);
+        int itemIndex = Integer.parseInt((String)cb.getSelectedItem());
+        parentPanel.type = ScriptType.values()[itemIndex];
     }
 }
