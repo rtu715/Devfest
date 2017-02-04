@@ -1,4 +1,6 @@
 *.class
+*.java.un~
+*.java~
 
 # Log file
 *.log

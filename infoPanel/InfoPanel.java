@@ -1,37 +1,29 @@
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JComboBox;
 
 public class InfoPanel extends JPanel {
-
-	public enum ScriptType {
-		CPU_INFO("CPU"), WEATHER("Weather"), CALENDAR("Calendar"), 
-		SPEED_TEST("SpeedTest"), DIR_TREE("DirectoryTree")
-	};
-
 
 	private ControlPanel controlPanel;
 	private JLabel label;
 	
 	public InfoPanel() {
 		label = new JLabel();
-		controlPanel = new controlPanel(this);
+		controlPanel = new ControlPanel(this);
 	}
 
 	// update the text part
-	/*public void update(String control) {
-    	String text;
-    	switch (control) {
-    		CPU_INFO.toString(): text = Scripts.getCPUInfo();
-    							 break;
-    		WEATHER.toString(): text = Scripts.getWeather();
-    							break;
-    		CALENDAR.toString(): text = Scripts.getCalendar();
-    							 break;
-    		SPEED_TEST.toString(): text = Scripts.getSpeed();
-    							   break;
-    		DIR_TREE.toString(): text = Scripts.getDirTree();
-    							 break;
-    	}
-    	label.setText(text);
-    }*/
+	public void update(String control) {
+    	if (control.equals(ScriptType.CPU_INFO.toString())) { 
+            label.setText(Scripts.getCPUInfo());
+        } else if (control.equals(ScriptType.WEATHER.toString())) { 
+            label.setText(Scripts.getWeather());
+        } else if (control.equals(ScriptType.CALENDAR.toString())) { 
+            label.setText(Scripts.getCalendar());
+        } else if (control.equals(ScriptType.SPEED_TEST.toString())) { 
+            label.setText(Scripts.getSpeedTest());
+        } else if (control.equals(ScriptType.DIR_TREE.toString())) { 
+            label.setText(Scripts.getDirTree());
+     	}
+    }
 }

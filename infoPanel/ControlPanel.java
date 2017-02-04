@@ -1,11 +1,13 @@
 import javax.swing.JPanel;
+import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ControlPanel extends JPanel implements ActionListener {
 
 	private static String[] controls = {"Please Choose One", "CPU", 
 				"Weather", "Calendar", "SpeedTest", "DirectoryTree"};
-	private JPanel parentPanel;
+	private InfoPanel parentPanel;
 	private JComboBox dropDown;
 	
 	public ControlPanel(InfoPanel parent) {
