@@ -41,32 +41,32 @@ public class InfoPanel extends JPanel implements ActionListener {
 	public void updateText(ScriptType type) {
     	switch (type) {
     		case CPU_INFO:
-    			title.setText("<html>|----|<br>| CPU |------<br>|----|</html>");
+    			title.setText("<html>| CPU |------ </html>");
     			label.setText(Scripts.getCpu());
     			break;
     		case WEATHER:
-    			title.setText("<html>|---------|<br>| WEATHER |------<br>|---------|</html>");
+    			title.setText("<html>| WEATHER |------ </html>");
     			label.setText(Scripts.getWeather());
     			break;
     		case CALENDAR:
-    			title.setText("<html>|----------|<br>| CALENDAR |------<br>|----------|</html>");
+    			title.setText("<html>| CALENDAR |------ </html>");
     			label.setText(Scripts.getCalendar());
     			break;
     		case SPEED_TEST:
-    			title.setText("<html>|----------|<br>| SPEED TEST |------<br>|----------|</html>");
+    			title.setText("<html>| SPEED TEST |------ </html>";
     			label.setText(Scripts.getSpeedTest());
     			break;
     		case DIR_TREE:
-    			title.setText("<html>|------------|<br>| CURRENT DIR |------<br>|------------|</html>");
+    			title.setText("<html>| CURRENT DIR |------ </html>");
     			label.setText(Scripts.getDirTree());
     			break;
     		case MEMORY:
-    			title.setText("<html>|--------|<br>| MEMORY |------<br>|--------|</html>");
+    			title.setText("<html>| MEMORY |------ </html>");
     			label.setText(Scripts.getMemory());
 				break;
     		default:
     			title.setText("Default Info");
-    			label.setText("Hi, this is a DevFest project.");
+    			label.setText("Hi, this is a DevFest project LAYER.");
     			break;
     	}
     }
