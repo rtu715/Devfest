@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Scripts {
 
 	public static String getCpu() {
-		StringBuilder sb = new StringBuilder();
+		String result = "";
 		OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
 		for (Method method : operatingSystemMXBean.getClass().getDeclaredMethods()) {
 		    method.setAccessible(true);
@@ -24,16 +24,16 @@ public class Scripts {
 		        } catch (Exception e) {
 		            value = e;
 		        } // try
-		        System.out.println("Process Cpu Time" + " = " + value);
-		        sb.append("Process Cpu Time = " + value+"\n");
+		        result = "<html>Process Cpu Time = <br>" + value+"</html>";
+		        System.out.println(result.replace(" ", "&nbsp;"));
 		    } // if
 		} // for
-		return sb.toString();
+		return result;
 	}
 		
 
 	public static String getWeather() {
-		return "";
+		return "<html>Sorry, not available yet :(<br>But you can try 'curl -4 wttr.in' in your own shell. </html>".replace(" ", "&nbsp;");
 	}
 
 	public static String getCalendar() {
@@ -46,12 +46,14 @@ public class Scripts {
 
 			String line = null;
 			StringBuilder sb = new StringBuilder();
+			sb.append("<html>");
 			while ((line = reader.readLine()) != null) {
 			   sb.append(line);
-			   sb.append("\n");
+			   sb.append("<br>");
 			}
+			sb.append("</html>");
 			System.out.print(sb.toString());
-			return sb.toString();
+			return sb.toString().replace(" ", "&nbsp;");
 		} catch (IOException e) {
 			System.out.println("An IOException happened");
 			return "Error";
@@ -59,7 +61,7 @@ public class Scripts {
 	}
 
 	public static String getSpeedTest() {
-		return "";
+		return "<html>Sorry, not available yet :(<br>But you can try www.speedtest.net. </html>".replace(" ", "&nbsp;");
 	}
 
 	public static String getDirTree() {
@@ -67,7 +69,7 @@ public class Scripts {
 			String dir = System.getProperty("user.dir");
 			String result = Scripts.showDir(dir);
 			System.out.println(result);
-			return result;
+			return result.replace(" ", "&nbsp;");
 		} catch (IOException e) {
 			System.out.println("An IOException happened");
 			System.out.println(e.getMessage());
@@ -78,27 +80,34 @@ public class Scripts {
 	private static String showDir(String dirPath) throws IOException {
 		StringBuilder sb = new StringBuilder();
 	    File dir = new File(dirPath);
-	    sb.append(dir.getName()+"\n");
+	    sb.append("<html>");
+	    sb.append("["+dir.getName()+"]");
+	    sb.append("<br>");
+	    int count = 0;
         File[] firstLevelFiles = dir.listFiles();
         if (firstLevelFiles != null && firstLevelFiles.length > 0) {
             for (File aFile : firstLevelFiles) {
                 sb.append("|--");
                 if (aFile.isDirectory()) {
                     sb.append("[" + aFile.getName() + "]");
-                    sb.append("\n");
+                    sb.append("<br>");
                 } else {
                     sb.append(aFile.getName());
-                    sb.append("\n");
+                    sb.append("<br>");
                 }
+                count++;
+                if (count > 10)
+                	break;
             }
         }
-	    return sb.toString();
+        sb.append("</html>");
+	    return sb.toString().replace(" ", "&nbsp;");
 	}
 
 	public static String getMemory() {
 		String m = Double.toString(Runtime.getRuntime().freeMemory()/Math.pow(10, 6));
-		System.out.println("Your free memory is " +m + " MB" );
-		return "Your free memory is " + m + " MB";
+		m = "<html>Your free memory is <br>" + m + " MB</html>";
+		return m.replace(" ", "&nbsp;");
 	}
 
 	public static void main(String[] args) throws IOException {
