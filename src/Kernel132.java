@@ -1,4 +1,4 @@
-package com.example;
+/*
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +10,7 @@ public interface Kernel132 extends StdCallLibrary {
 
     public Kernel132 INSTANCE = (Kernel132) Native.loadLibrary("Kernel32", Kernel132.class);
 
-    /**
-     * @see http://msdn2.microsoft.com/en-us/library/aa373232.aspx
-     */
+
     public class SYSTEM_POWER_STATUS extends Structure {
         public byte ACLineStatus;
         public byte BatteryFlag;
@@ -33,9 +31,7 @@ public interface Kernel132 extends StdCallLibrary {
             return fields;
         }
 
-        /**
-         * The AC power status
-         */
+        // The AC power status
         public String getACLineStatusString() {
             switch (ACLineStatus) {
                 case (0): return "Offline";
@@ -44,9 +40,7 @@ public interface Kernel132 extends StdCallLibrary {
             }
         }
 
-        /**
-         * The battery charge status
-         */
+        //The battery charge status
         public String getBatteryFlagString() {
             switch (BatteryFlag) {
                 case (1): return "High, more than 66 percent";
@@ -58,23 +52,17 @@ public interface Kernel132 extends StdCallLibrary {
             }
         }
 
-        /**
-         * The percentage of full battery charge remaining
-         */
+        //The percentage of full battery charge remaining
         public String getBatteryLifePercent() {
             return (BatteryLifePercent == (byte) 255) ? "Unknown" : BatteryLifePercent + "%";
         }
 
-        /**
-         * The number of seconds of battery life remaining
-         */
+        //The number of seconds of battery life remaining
         public String getBatteryLifeTime() {
             return (BatteryLifeTime == -1) ? "Unknown" : BatteryLifeTime + " seconds";
         }
 
-        /**
-         * The number of seconds of battery life when at full charge
-         */
+        // The number of seconds of battery life when at full charge
         public String getBatteryFullLifeTime() {
             return (BatteryFullLifeTime == -1) ? "Unknown" : BatteryFullLifeTime + " seconds";
         }
@@ -91,8 +79,7 @@ public interface Kernel132 extends StdCallLibrary {
         }
     }
 
-    /**
-     * Fill the structure.
-     */
+    //Fill the structure.
     public int GetSystemPowerStatus(SYSTEM_POWER_STATUS result);
 }
+*/

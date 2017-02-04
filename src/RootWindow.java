@@ -44,7 +44,6 @@ public class RootWindow{
 		ip.setPreferredSize(new Dimension(200,200));
 		frame.add(ip, constraints);
 		
-
 		//finalize frame and show
 		frame.toBack();
 		frame.pack();

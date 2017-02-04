@@ -3,8 +3,10 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class InfoPanel extends JPanel{
+public class InfoPanel extends JPanel implements ActionListener{
 	private JLabel label;
 	private ControlPanel controlPanel;
 	private JButton settingsButton;
@@ -14,7 +16,7 @@ public class InfoPanel extends JPanel{
 		this.setBackground(new Color(1f,0,0,0.5f));
 		//this.setLayout();
 		//instantiate components and parent the panel
-		settingsButton = new JButton();
+		settingsButton = new SettingsButton((ActionListener) this);
 		label = new JLabel();
 		this.add(label);
 		this.add(settingsButton);
@@ -37,7 +39,13 @@ public class InfoPanel extends JPanel{
         } else if (control.equals(ScriptType.SPEED_TEST.toString())) { 
             label.setText(Scripts.getSpeedTest());
         } else if (control.equals(ScriptType.DIR_TREE.toString())) {
-            label.setText(Scripts.getDirTree());
+            //label.setText(Scripts.getDirTree());
      	}
     }
+	
+	public void actionPerformed (ActionEvent e){
+		//open up the sub-menu
+		//debug for now
+		System.out.println("hi");
+	}
 }

@@ -23,6 +23,6 @@ public class ControlPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
         JComboBox cb = (JComboBox) e.getSource();
         String control = (String) cb.getSelectedItem();
-        parentPanel.update(control); 
+        parentPanel.update(control);
     }
 }
