@@ -1,15 +1,23 @@
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JComboBox;
 
-public class InfoPanel extends JPanel {
-
-	private ControlPanel controlPanel;
+public class InfoPanel {
 	private JLabel label;
+	private JPanel panel;
+	private ControlPanel controlPanel;
+	
+	private Vector2 pos;
+	private Vector2 size;
 	
 	public InfoPanel() {
+		//set instance vars
+		
+		//instantiate components and parent the panel
+		panel = new JPanel();
 		label = new JLabel();
 		controlPanel = new ControlPanel(this);
+		panel.add(label);
+		panel.add(controlPanel);
 	}
 
 	// update the text part

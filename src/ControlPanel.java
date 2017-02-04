@@ -19,10 +19,10 @@ public class ControlPanel extends JPanel implements ActionListener {
 	}
 
 	/** Listens to the drop down. */
-    public void actionPerformed(ActionEvent e) {
+    @Override
+	public void actionPerformed(ActionEvent e) {
         JComboBox cb = (JComboBox) e.getSource();
         String control = (String) cb.getSelectedItem();
         parentPanel.update(control); 
     }
-
 }
