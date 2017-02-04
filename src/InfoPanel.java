@@ -53,7 +53,7 @@ public class InfoPanel extends JPanel implements ActionListener {
     			label.setText(Scripts.getCalendar());
     			break;
     		case SPEED_TEST:
-    			title.setText("<html>| SPEED TEST |------ </html>";
+    			title.setText("<html>| SPEED TEST |------ </html>");
     			label.setText(Scripts.getSpeedTest());
     			break;
     		case DIR_TREE:
