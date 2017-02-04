@@ -1,4 +1,8 @@
 import java.io.BufferedReader;
+import java.lang.management.ManagementFactory;
+import java.lang.management.OperatingSystemMXBean;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -6,10 +10,23 @@ import java.io.File;
 import java.io.IOException;
 
 public class Scripts {
-	
-	public static String getCPUInfo() {
-		return "";
+	public static void getCpu() {
+	  OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
+	  for (Method method : operatingSystemMXBean.getClass().getDeclaredMethods()) {
+	    method.setAccessible(true);
+	    if (method.getName().startsWith("getProcessCpuTime") 
+	        && Modifier.isPublic(method.getModifiers())) {
+	            Object value;
+	        try {
+	            value = method.invoke(operatingSystemMXBean);
+	        } catch (Exception e) {
+	            value = e;
+	        } // try
+	        System.out.println("Process Cpu Time" + " = " + value);
+	    } // if
+	  } // for
 	}
+		
 
 	public static String getWeather() {
 		return "";
@@ -51,6 +68,10 @@ public class Scripts {
 	          showDir(indent + 4, files[i]);
 	      }
 	      }
+	public static void getMemory() {
+		String m = Double.toString(Runtime.getRuntime().freeMemory()/Math.pow(10, 6));
+		System.out.println("Your free memory is " +m + " MB" );
+	}
 
 	public static void main(String[] args) throws IOException {
 		// testing these methods
@@ -58,6 +79,8 @@ public class Scripts {
 		Scripts.getCalendar();
 		String dir = System.getProperty("user.home") + File.separator + "Desktop";
 		Scripts.showDir(1, new File(dir));
+		Scripts.getMemory();
+		Scripts.getCpu();
 	}
 
 }
