@@ -1,19 +1,20 @@
 import java.awt.Color;
+
 import javax.swing.JFrame;
 
-public class RootWindow extends JFrame {
+public class RootWindow extends JFrame{
+	private static final long serialVersionUID = 1L;
+
 	public RootWindow(){
-		System.out.println("yo");
-		setTitle("");
-		setSize(300,200);
-		setUndecorated(true);
-		setBackground(new Color(0,0,0,1));
+		//window properties--innate
+		this.setUndecorated(true);
+		this.setBackground(new Color(1,1,1,100));
 		
 		//disable dragging of window
-		getRootPane().putClientProperty("apple.awt.draggableWindowBackground", false);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setExtendedState(MAXIMIZED_BOTH);
+		this.setResizable(false);
 		pack();
-		setVisible(true);
+		this.toBack();
 	}
 }

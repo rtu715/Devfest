@@ -1,8 +1,15 @@
+import java.awt.EventQueue;
 
 public class Main {
-
 	public static void main(String[] args) {
-		RootWindow root = new RootWindow();
+		EventQueue.invokeLater(new Runnable(){
+		   public void run()
+		   {
+			   RootWindow rootWin = new RootWindow();
+			   rootWin.setVisible(true);
+		   }
+	   });
+	   System.out.println("hi");
 	}
 
 }
