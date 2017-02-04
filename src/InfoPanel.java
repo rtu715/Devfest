@@ -1,23 +1,29 @@
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Dimension;
 
-public class InfoPanel {
+public class InfoPanel extends JPanel{
 	private JLabel label;
-	private JPanel panel;
 	private ControlPanel controlPanel;
-	
-	private Vector2 pos;
-	private Vector2 size;
+	private JButton settingsButton;
 	
 	public InfoPanel() {
-		//set instance vars
 		
+		this.setBackground(new Color(1f,0,0,0.5f));
+		//this.setLayout();
 		//instantiate components and parent the panel
-		panel = new JPanel();
+		settingsButton = new JButton();
 		label = new JLabel();
-		controlPanel = new ControlPanel(this);
-		panel.add(label);
-		panel.add(controlPanel);
+		this.add(label);
+		this.add(settingsButton);
+		//controlPanel = new ControlPanel(this);
+		//this.add(controlPanel);
+		
+		//use the position of the wrapper to dictate positon of components
+		label.setAlignmentX(50);
+		label.setText("TEST");
 	}
 
 	// update the text part
@@ -30,7 +36,7 @@ public class InfoPanel {
             label.setText(Scripts.getCalendar());
         } else if (control.equals(ScriptType.SPEED_TEST.toString())) { 
             label.setText(Scripts.getSpeedTest());
-        } else if (control.equals(ScriptType.DIR_TREE.toString())) { 
+        } else if (control.equals(ScriptType.DIR_TREE.toString())) {
             label.setText(Scripts.getDirTree());
      	}
     }

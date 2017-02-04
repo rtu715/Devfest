@@ -6,7 +6,6 @@ public class Main {
 		public void run()
 		   {
 			   RootWindow rootWin = new RootWindow();
-			   rootWin.setVisible(true);
 		   }
 	   });
 	   System.out.println("hi");
