@@ -30,32 +30,27 @@ public class InfoPanel extends JPanel implements ActionListener{
 	public void update() {
     	switch(this.type){
     		case CPU_INFO:
+    			label.setText(Scripts.getCpu());
     			break;
     		case WEATHER:
+    			label.setText(Scripts.getWeather());
     			break;
     		case CALENDAR:
+    			label.setText(Scripts.getCalendar());
     			break;
     		case SPEED_TEST:
+    			label.setText(Scripts.getSpeedTest());
     			break;
     		case DIR_TREE:
+    			label.setText(Scripts.getDirTree());
     			break;
+    		case MEMORY:
+    			label.setText(Scripts.getMemory());
+				break;
     		default:
+    			label.setText("");
     			break;
     	}
-		/*
-    	if (control.equals(ScriptType.CPU_INFO.toString())) { 
-    	
-            label.setText(Scripts.getCPUInfo());
-        } else if (control.equals(ScriptType.WEATHER.toString())) { 
-            label.setText(Scripts.getWeather());
-        } else if (control.equals(ScriptType.CALENDAR.toString())) { 
-            label.setText(Scripts.getCalendar());
-        } else if (control.equals(ScriptType.SPEED_TEST.toString())) { 
-            label.setText(Scripts.getSpeedTest());
-        } else if (control.equals(ScriptType.DIR_TREE.toString())) {
-            //label.setText(Scripts.getDirTree());
-     	}
-     	*/
     }
 	
 	public void actionPerformed (ActionEvent e){

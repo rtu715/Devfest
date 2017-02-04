@@ -3,11 +3,10 @@ import java.awt.EventQueue;
 public class Main {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable(){
-		public void run()
-		   {
-			   RootWindow rootWin = new RootWindow();
-		   }
-	   });
-	   System.out.println("hi");
+			public void run() {
+			    RootWindow rootWin = new RootWindow();
+		    }
+	    });
+	    System.out.println("hi");
 	}
 }

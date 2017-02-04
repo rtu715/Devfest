@@ -10,21 +10,25 @@ import java.io.File;
 import java.io.IOException;
 
 public class Scripts {
-	public static void getCpu() {
-	  OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
-	  for (Method method : operatingSystemMXBean.getClass().getDeclaredMethods()) {
-	    method.setAccessible(true);
-	    if (method.getName().startsWith("getProcessCpuTime") 
-	        && Modifier.isPublic(method.getModifiers())) {
-	            Object value;
-	        try {
-	            value = method.invoke(operatingSystemMXBean);
-	        } catch (Exception e) {
-	            value = e;
-	        } // try
-	        System.out.println("Process Cpu Time" + " = " + value);
-	    } // if
-	  } // for
+
+	public static String getCpu() {
+		StringBuilder sb = new StringBuilder();
+		OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
+		for (Method method : operatingSystemMXBean.getClass().getDeclaredMethods()) {
+		    method.setAccessible(true);
+		    if (method.getName().startsWith("getProcessCpuTime") 
+		        && Modifier.isPublic(method.getModifiers())) {
+		            Object value;
+		        try {
+		            value = method.invoke(operatingSystemMXBean);
+		        } catch (Exception e) {
+		            value = e;
+		        } // try
+		        System.out.println("Process Cpu Time" + " = " + value);
+		        sb.append("Process Cpu Time = " + value+"\n");
+		    } // if
+		} // for
+		return sb.toString();
 	}
 		
 
@@ -46,7 +50,7 @@ public class Scripts {
 			   sb.append(line);
 			   sb.append("\n");
 			}
-			// System.out.print(sb.toString());
+			System.out.print(sb.toString());
 			return sb.toString();
 		} catch (IOException e) {
 			System.out.println("An IOException happened");
@@ -58,27 +62,50 @@ public class Scripts {
 		return "";
 	}
 
-	public static void showDir(int indent, File file) throws IOException {
-	    for (int i = 0; i < indent; i++)
-	        System.out.print('-');
-	      System.out.println(file.getName());
-	      if (file.isDirectory()) {
-	        File[] files = file.listFiles();
-	        for (int i = 0; i < Math.min(5,files.length); i++)
-	          showDir(indent + 4, files[i]);
-	      }
-	      }
-	public static void getMemory() {
+	public static String getDirTree() {
+		try {
+			String dir = System.getProperty("user.dir");
+			String result = Scripts.showDir(dir);
+			System.out.println(result);
+			return result;
+		} catch (IOException e) {
+			System.out.println("An IOException happened");
+			System.out.println(e.getMessage());
+			return "Error";
+		}
+	}
+
+	private static String showDir(String dirPath) throws IOException {
+		StringBuilder sb = new StringBuilder();
+	    File dir = new File(dirPath);
+	    sb.append(dir.getName()+"\n");
+        File[] firstLevelFiles = dir.listFiles();
+        if (firstLevelFiles != null && firstLevelFiles.length > 0) {
+            for (File aFile : firstLevelFiles) {
+                sb.append("|--");
+                if (aFile.isDirectory()) {
+                    sb.append("[" + aFile.getName() + "]");
+                    sb.append("\n");
+                } else {
+                    sb.append(aFile.getName());
+                    sb.append("\n");
+                }
+            }
+        }
+	    return sb.toString();
+	}
+
+	public static String getMemory() {
 		String m = Double.toString(Runtime.getRuntime().freeMemory()/Math.pow(10, 6));
 		System.out.println("Your free memory is " +m + " MB" );
+		return "Your free memory is " + m + " MB";
 	}
 
 	public static void main(String[] args) throws IOException {
 		// testing these methods
 		Scripts s = new Scripts();
 		Scripts.getCalendar();
-		String dir = System.getProperty("user.home") + File.separator + "Desktop";
-		Scripts.showDir(1, new File(dir));
+		Scripts.getDirTree();
 		Scripts.getMemory();
 		Scripts.getCpu();
 	}

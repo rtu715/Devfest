@@ -16,13 +16,13 @@ import javax.swing.JPanel;
  author: armerala
  */
 
-public class RootWindow implements ActionListener{
+public class RootWindow implements ActionListener {
 	
 	private JFrame frame;
 	private int width;
 	private int height;
 	
-	public RootWindow(){
+	public RootWindow() {
 		//set frame properties and create layout variables
 		frame = new JFrame();
 		frame.setLayout(new GridBagLayout());
