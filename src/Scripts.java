@@ -3,6 +3,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
 
 public class Scripts {
 	
@@ -40,32 +41,23 @@ public class Scripts {
 		return "";
 	}
 
-	public static void getDirTree(String dirPath, int level) {
-		
-		        File dir = new File(dirPath);
-		        File[] firstLevelFiles = dir.listFiles();
-		        if (firstLevelFiles != null && firstLevelFiles.length > 0) {
-		            for (File aFile : firstLevelFiles) {
-		                for (int i = 0; i < level; i++) {
-		                    System.out.print("\t");
-		                }
-		                if (aFile.isDirectory()) {
-		                    System.out.println("[" + aFile.getName() + "]");
-		                    getDirTree(aFile.getAbsolutePath(), level + 1);
-		                } else {
-		                    System.out.println(aFile.getName());
-		                }
-		            }
-		        }
-		    
-		}
+	public static void showDir(int indent, File file) throws IOException {
+	    for (int i = 0; i < indent; i++)
+	        System.out.print('-');
+	      System.out.println(file.getName());
+	      if (file.isDirectory()) {
+	        File[] files = file.listFiles();
+	        for (int i = 0; i < Math.min(5,files.length); i++)
+	          showDir(indent + 4, files[i]);
+	      }
+	      }
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// testing these methods
 		Scripts s = new Scripts();
 		Scripts.getCalendar();
-		String dir = System.getProperty("user.home") + File.separator + "Downloads";
-		Scripts.getDirTree(dir,0);
+		String dir = System.getProperty("user.home") + File.separator + "Desktop";
+		Scripts.showDir(1, new File(dir));
 	}
 
 }
