@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.File;
 
 public class Scripts {
 	
@@ -39,14 +40,32 @@ public class Scripts {
 		return "";
 	}
 
-	public static String getDirTree() {
-		return "";
-	}
+	public static void getDirTree(String dirPath, int level) {
+		
+		        File dir = new File(dirPath);
+		        File[] firstLevelFiles = dir.listFiles();
+		        if (firstLevelFiles != null && firstLevelFiles.length > 0) {
+		            for (File aFile : firstLevelFiles) {
+		                for (int i = 0; i < level; i++) {
+		                    System.out.print("\t");
+		                }
+		                if (aFile.isDirectory()) {
+		                    System.out.println("[" + aFile.getName() + "]");
+		                    getDirTree(aFile.getAbsolutePath(), level + 1);
+		                } else {
+		                    System.out.println(aFile.getName());
+		                }
+		            }
+		        }
+		    
+		}
 
 	public static void main(String[] args) {
 		// testing these methods
 		Scripts s = new Scripts();
 		Scripts.getCalendar();
+		String dir = System.getProperty("user.home") + File.separator + "Downloads";
+		Scripts.getDirTree(dir,0);
 	}
 
 }
